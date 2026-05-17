@@ -1,11 +1,23 @@
 [package]
-name = "multitool"
-version = "0.1.0"
+name = "syskit"
+version = "0.9.0"
 authors = ["bissbotch <64175657+bissbotch@users.noreply.github.com>"]
-edition = "2018"
+edition = "2021"
+description = "A production-grade system diagnostic and security utility pipeline."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-clap = { version = "4.6.1", features = ["cargo"] }
+clap = "4.6.1"
 walkdir = "2.5.0"
+trash = "5.2.6"
+sysinfo = "0.39.2"
+reqwest = { version = "0.13.3", features = ["blocking", "json", "stream"] }
+sha2 = "0.11.0"
+aes-gcm = "0.10.3"
+rand = "0.10.1"
+tokio = { version = "1.52.3", features = ["full"] }
+serde = { version = "1.0.228", features = ["derive"] }
+stream = "0.1.0"
+serde_json = "1.0.149"
+futures-util = "0.3.32"
