@@ -1,20 +1,45 @@
-use std::str::FromStr;
 use std::env;
+use clap::{Arg, command, ArgGroup};
+use std::path::PathBuf;
+use multitool::find_file;
 
 fn main() {
-    let mut args = Vec::new();
 
-    for arg in env::args().skip(1) {
-        args.push(u64::from_str(&arg)
-            .expect("Error parsing arguments"));
+    dashboard();
+
+    let _matches = command!()
+    .about("This is a multitool written in Rust to centralise a lot of primary tools into a single tool.")
+
+    .arg(
+        Arg::new("find")
+            .short('f')
+            .long("find")
+            .help("Find a file")
+            .num_args(1)
+            .value_name("FILENAME")
+    )
+    
+    .arg(
+        Arg::new("read")
+            .short('r')
+            .long("read")
+            .help("Read a file")
+            .num_args(1)
+            .value_name("FILEPATH")
+    )
+    .get_matches();
+
+    if let Some(file_to_find) = matches.get_string("find") {
+        println!("Searching for {}", file_to_find);
+
+        let current_dir = Path::new(".");
+        find_file(&file_to_find, current_dir);
     }
 
-    if args.len() == 0 {
-        eprintln!("usage: broot USER PASSFILE");
-        std::process::exit(1);
-    }
+
 }
 
-
-
-
+fn dashboard() {
+    println!("Welcome to the Rust Multitool");
+    println!("-----------------------------");
+}

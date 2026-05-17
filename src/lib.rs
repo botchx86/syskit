@@ -1,18 +1,10 @@
-use std::fs::File;
-use std::io::prelude::*;
+use std::path::Path;
+use walkdir::WalkDir;
 
-pub fn find_file() -> &String {
-    let mut file = File::open("passwords.txt")
-        .expect("Cannot open file");
+pub fn find_file(target_file: &str, search_dir: &Path) {
+    for entry in WalkDir::new(search_dir) {
+        if let Ok(entry) = entry {
 
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)
-        .expect("Cannot read the file");
-
-    
-    return contents;
-}
-
-pub fn read_file(contents) {
-    println!("File contents: \n\n{}", contents);
+        }
+    }
 }
